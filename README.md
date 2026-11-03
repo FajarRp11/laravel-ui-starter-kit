@@ -1,58 +1,210 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel UI Starter Kit
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Starter kit modern untuk Laravel yang dilengkapi dengan kumpulan komponen Blade native, sistem token warna OKLCH, Tailwind CSS v4, Alpine.js, serta Chart.js.
 
-## About Laravel
+Didesain khusus untuk mempercepat pembuatan antarmuka aplikasi web dan dashboard admin tanpa ketergantungan pada framework JavaScript frontend yang berat.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Fitur Utama
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Laravel 13 & PHP 8.3+**: Menggunakan arsitektur Laravel terbaru dengan performa optimal.
+- **Tailwind CSS v4 (@tailwindcss/vite)**: Konfigurasi styling berbasis CSS first tanpa overhead file konfigurasi legacy.
+- **Design Tokens (OKLCH)**: Sistem variabel warna modern pada `resources/css/app.css` untuk transisi Light Mode dan Dark Mode yang konsisten.
+- **Alpine.js v3**: Interaktivitas ringan (modal, dropdown, dark mode toggle, mobile navigation drawer).
+- **Chart.js v4**: Komponen chart terintegrasi yang otomatis menyesuaikan palet warna dark/light mode.
+- **16+ Reusable Blade Components**: Komponen siap pakai untuk form, feedback, navigasi, dan visualisasi data.
+- **Responsive Admin Layout**: Template dashboard lengkap dengan sidebar yang dapat diciutkan dan topbar responsif.
+- **Halaman Demo Siap Pakai**:
+  - `/` — Halaman landing / welcome.
+  - `/components` — Showcase interaktif seluruh komponen dan dokumentasi kodenya.
+  - `/dashboard` — Halaman dashboard analitik bisnis lengkap dengan metrik, grafik, dan tabel transaksi.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📦 Daftar Komponen Blade
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Semua komponen terletak di direktori `resources/views/components/`:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### 1. Form Components (`x-form.*`)
+| Komponen | Deskripsi | Parameter Utama |
+| :--- | :--- | :--- |
+| `<x-form.input>` | Input teks fleksibel dengan ikon prefix/suffix, label, dan validasi error | `label`, `name`, `type`, `placeholder`, `error`, `helper`, `disabled`, `required` |
+| `<x-form.select>` | Dropdown pilihan form | `label`, `name`, `options` (array/key-value), `placeholder`, `error`, `selected` |
+| `<x-form.textarea>` | Area teks multi-baris | `label`, `name`, `rows`, `placeholder`, `error`, `helper` |
+| `<x-form.checkbox>` | Checkbox kustom dengan label dan deskripsi | `label`, `name`, `description`, `checked`, `value` |
 
-## Agentic Development
+### 2. UI Components (`x-ui.*`)
+| Komponen | Deskripsi | Parameter Utama |
+| :--- | :--- | :--- |
+| `<x-ui.button>` | Tombol aksi dengan indikator loading | `variant` (primary, secondary, outline, ghost, danger), `size` (sm, md, lg, icon), `href`, `loading`, `disabled`, `pill` |
+| `<x-ui.badge>` | Label status / badge | `variant` (primary, success, warning, danger, info), `size` (sm, md), `pill` |
+| `<x-ui.card>` | Kontainer kartu konten | `padding` (bool), `shadow` (bool), slot: `header`, `default`, `footer` |
+| `<x-ui.modal>` | Dialog interaktif (Alpine.js) | `id`, `title`, `size` (sm, md, lg, xl), slot: `trigger`, `default`, `footer` |
+| `<x-ui.alert>` | Notifikasi alert yang dapat ditutup | `variant` (info, success, warning, danger), `title`, `dismissible` |
+| `<x-ui.dropdown>` | Menu dropdown popover | `align` (left, right), `width`, slot: `trigger`, `default` |
+| `<x-ui.avatar>` | Avatar gambar pengguna atau inisial | `src`, `name`, `size` (xs, sm, md, lg, xl), `status` (online, offline, busy, away) |
+| `<x-ui.table>` | Wrapper tabel responsif | `striped`, `hoverable`, slot: `head`, `default` |
+| `<x-ui.empty-state>` | Tampilan state kosong ketika data nihil | `title`, `description`, slot: `icon`, `actions` |
+| `<x-ui.spinner>` | Indikator loading SVG berputar | `size` (sm, md, lg), `color` |
+| `<x-ui.chart>` | Wrapper visualisasi grafik Chart.js | `type` (line, bar, doughnut, pie), `labels`, `datasets`, `height` |
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 3. Layout Components (`x-layout.*`)
+| Komponen | Deskripsi | Parameter Utama |
+| :--- | :--- | :--- |
+| `<x-layout.admin>` | Shell layout admin utama | `title`, `appName`, slot: `actions`, `default` |
+| `<x-layout.sidebar>` | Sidebar navigasi responsif | `appName`, slot: `logo`, `nav`, `footer` |
+| `<x-layout.topbar>` | Bar atas navigasi dengan pencarian dan profil | slot: `search`, `actions` |
 
-```bash
-composer require laravel/boost --dev
+---
 
-php artisan boost:install
+## 🛠️ Persyaratan Sistem
+
+- **PHP**: ^8.3
+- **Composer**: ^2.x
+- **Node.js**: ^18.x atau ^20.x
+- **NPM**: ^9.x atau ^10.x
+
+---
+
+## ⚙️ Instalasi & Menjalankan Proyek
+
+1. **Clone repositori**:
+   ```bash
+   git clone <url-repository>
+   cd laravel-ui-starter-kit
+   ```
+
+2. **Pasang dependensi PHP**:
+   ```bash
+   composer install
+   ```
+
+3. **Konfigurasi Environment**:
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+4. **Pasang dependensi Node.js & bangun asset**:
+   ```bash
+   npm install
+   npm run build
+   ```
+
+5. **Jalankan server pengembangan**:
+   ```bash
+   # Opsi 1: Menjalankan dev server Laravel dan Vite sekaligus
+   composer run dev
+
+   # Opsi 2: Menjalankan secara terpisah
+   php artisan serve
+   npm run dev
+   ```
+
+6. **Akses aplikasi di browser**:
+   - Beranda: `http://localhost:8000`
+   - Showcase Komponen: `http://localhost:8000/components`
+   - Dashboard Admin: `http://localhost:8000/dashboard`
+
+---
+
+## 💡 Contoh Penggunaan Komponen
+
+### Tombol (Button)
+```blade
+<x-ui.button variant="primary" size="md">
+    Simpan Perubahan
+</x-ui.button>
+
+<x-ui.button variant="danger" size="sm" :loading="true">
+    Menghapus...
+</x-ui.button>
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### Input Form
+```blade
+<x-form.input
+    name="email"
+    type="email"
+    label="Alamat Email"
+    placeholder="nama@domain.com"
+    :required="true"
+    helper="Kami tidak akan membagikan email Anda kepada siapa pun."
+/>
+```
 
-## Contributing
+### Modal Dialog
+```blade
+<x-ui.modal id="delete-confirm" title="Konfirmasi Hapus" size="md">
+    <x-slot:trigger>
+        <x-ui.button variant="danger">Hapus Akun</x-ui.button>
+    </x-slot:trigger>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    <p class="text-sm text-text-muted">
+        Apakah Anda yakin ingin menghapus akun ini? Tindakan ini tidak dapat dibatalkan.
+    </p>
 
-## Code of Conduct
+    <x-slot:footer>
+        <x-ui.button variant="secondary" @click="open = false">Batal</x-ui.button>
+        <x-ui.button variant="danger">Ya, Hapus</x-ui.button>
+    </x-slot:footer>
+</x-ui.modal>
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Grafik (Chart.js)
+```blade
+<x-ui.chart
+    type="line"
+    :labels="['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun']"
+    :datasets="[
+        [
+            'label' => 'Penjualan 2026',
+            'data' => [120, 190, 300, 500, 420, 650],
+            'borderColor' => '#10b981',
+            'backgroundColor' => 'rgba(16, 185, 129, 0.1)',
+            'fill' => true,
+            'tension' => 0.4
+        ]
+    ]"
+    :height="280"
+/>
+```
 
-## Security Vulnerabilities
+### Halaman dengan Layout Admin
+```blade
+<x-layout.admin title="Dashboard Ringkasan">
+    <x-slot:actions>
+        <x-ui.button variant="primary" size="sm">Ekspor PDF</x-ui.button>
+    </x-slot:actions>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    <div class="space-y-6">
+        <x-ui.card>
+            <h4 class="font-semibold text-lg text-text">Konten Utama</h4>
+            <p class="text-sm text-text-muted mt-1">Isi konten dashboard di sini.</p>
+        </x-ui.card>
+    </div>
+</x-layout.admin>
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🧪 Testing & Code Quality
+
+- **Menjalankan Test (Pest)**:
+  ```bash
+  composer test
+  # atau
+  php artisan test
+  ```
+
+- **Format Kode (Laravel Pint)**:
+  ```bash
+  vendor/bin/pint
+  ```
+
+---
+
+## 📄 Lisensi
+
+Proyek ini dilisensikan di bawah [Lisensi MIT](LICENSE).
